@@ -1,0 +1,8 @@
+#ajaxAction:
+#    path: /ajax_request
+#   controller: App\Controller\DefaultController::index
+#comment_create:
+#  path:  /ajax
+#  controller:  App\Controller\TableController:ajaxAction
+#  requirements:
+#    methods:  POST
