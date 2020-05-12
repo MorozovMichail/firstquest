@@ -27,38 +27,37 @@ class TableController extends AbstractController
             ->getManager();
         $qb = $this->getDoctrine()->getManager();
 
+$count=$em->getRepository(CourseOfTrading::class)
+    ->countstr();
+
+      $count=$count / 10;
+        $count=ceil($count) ;
 
 
         if ($request->isXmlHttpRequest()) {
-            if($request->request->get('sortst')=="1")
-            {
-                $traids = $em->getRepository(CourseOfTrading::class)
-                    ->getLatestBlogs();
-                for($i=0;$i<30;$i=$i+1) {
-                    $Data = $traids[$i]->getSYSTIME()->format('Y-m-d H:i:s');
-                    $traids[$i]->setSYSTIME($Data);
-                }
-                return new JsonResponse($traids);
-            }
-            else {
+
+
+                $count=1;
                 $why = $request->request->get('sortst');
                 $direct = $request->request->get('direct');
+                $count=$request->request->get('count');
+
                 $traids =
                     $em->getRepository(CourseOfTrading::class)
-                        ->kryb($why, $direct);
+                        ->kryb($why, $direct, $count);
 
 //getSYSTIME
-                for($i=0;$i<30;$i=$i+1) {
+                for($i=0;$i<10;$i=$i+1) {
                     $Data = $traids[$i]->getSYSTIME()->format('Y-m-d H:i:s');
                     $traids[$i]->setSYSTIME($Data);
                 }
                 return new JsonResponse($traids);
-            }
+
         } else {
             $traids = $em->getRepository(CourseOfTrading::class)
                 ->getLatestBlogs();
         return $this->render('table/index.html.twig', [
-            'traids' => $traids, 'i' => $i, 'j' => $j
+            'traids' => $traids, 'i' => $i, 'j' => $j,'count'=>$count
         ]);
 
         }

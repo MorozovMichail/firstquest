@@ -23,24 +23,56 @@ class CourseOfTradingRepository extends ServiceEntityRepository
     {
         $qb = $this->createQueryBuilder('b')
             ->select('b')
-            ->addOrderBy('b.id', 'ASC');
-
+            ->addOrderBy('b.id', 'ASC')
+            ->setMaxResults( 10 );
 
 
 
         return $qb->getQuery()
             ->getResult();
     }
+//подщет какие записи выводить
+//->setFirstResult( $offset )
+//->setMaxResults( $limit );
 
 
-
-    public function kryb($why,$direct)
+    public function countstr()
     {
+//        $entityManager = $this->getEntityManager();
+//        $query = $entityManager->createQuery(
+//            'SELECT COUNT(*) LIMIT 1
+//            '
+//        );
+        $query = $this->createQueryBuilder('b')
+            ->select('count(b.id)')
+            ->getQuery()
+            ->getSingleScalarResult();
 
-        $qb = $this->createQueryBuilder('b')
-            ->select('b')
-            ->addOrderBy('b.'. $why, $direct);
 
+        ;
+
+        return $query;
+    }
+
+    public function kryb($why,$direct,$count)
+    {$count = $count * 10;
+        if($direct==1)
+        {
+            $qb = $this->createQueryBuilder('b')
+                ->select('b')
+                ->addOrderBy('b.id', 'ASC')
+                ->setFirstResult($count - 10)
+                ->setMaxResults($count);
+
+        }
+        else {
+
+            $qb = $this->createQueryBuilder('b')
+                ->select('b')
+                ->addOrderBy('b.' . $why, $direct)
+                ->setFirstResult($count - 10)
+                ->setMaxResults($count);
+        }
 
 
         return $qb->getQuery()

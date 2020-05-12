@@ -7,6 +7,7 @@
     <script language = "javascript">
         $(document).ready(function(){
      //       id="kr" id="cps" id="isc"  id="obs" id="time"
+            var countt = 1;
             $("#kr").on("click", function(event){
                 $("#cps").removeClass("ASC")
                 $("#cps").removeClass("DESC")
@@ -40,7 +41,7 @@
                 $.ajax({
                     url: "/",
                     type : "POST",
-                    data: {sortst:"SHORTNAME" , direct:$("#kr").attr('class')},
+                    data: {sortst:"SHORTNAME" , direct:$("#kr").attr('class'), count:countt},
 
 
                     success: function(data) {
@@ -118,7 +119,7 @@
                 $.ajax({
                     url: "/",
                     type : "POST",
-                    data: {sortst:"LASTOFFER" , direct:$("#cps").attr('class')},
+                    data: {sortst:"LASTOFFER" , direct:$("#cps").attr('class'), count:countt},
 
 
                     success: function(data) {
@@ -194,7 +195,7 @@
                 $.ajax({
                     url: "/",
                     type : "POST",
-                    data: {sortst:"LASTTOPREVPRICE" , direct:$("#isc").attr('class')},
+                    data: {sortst:"LASTTOPREVPRICE" , direct:$("#isc").attr('class'), count:countt},
 
 
                     success: function(data) {
@@ -270,7 +271,7 @@
                 $.ajax({
                     url: "/",
                     type : "POST",
-                    data: {sortst:"VOLTODAY" , direct:$("#obs").attr('class')},
+                    data: {sortst:"VOLTODAY" , direct:$("#obs").attr('class'), count:countt},
 
 
                     success: function(data) {
@@ -346,7 +347,7 @@
                 $.ajax({
                     url: "/",
                     type : "POST",
-                    data: {sortst:"SYSTIME" , direct:$("#time").attr('class')},
+                    data: {sortst:"SYSTIME" , direct:$("#time").attr('class'), count:countt},
 
 
                     success: function(data) {
@@ -403,7 +404,11 @@
 
 
             // страницы        //       id="kr" id="cps" id="isc"  id="obs" id="time"
-            $("#page1").on("click", function(event){
+
+
+            $(".page").on("click", function(event){
+                var countt = $(this).attr("id");
+                console.log(String(countt));
                 if($("#kr").hasClass("DESC"))  //1
                 {
                     var sortstt = "SHORTNAME"
@@ -491,7 +496,7 @@
                 $.ajax({
                     url: "/",
                     type : "POST",
-                    data:  {sortst:sortstt , direct:directt},
+                    data:  {sortst:sortstt , direct:directt, count:countt},
 
 
                     success: function(data) {
@@ -521,261 +526,7 @@
                         }
                         var d = new Date(data[0].SYSTIME);
 
-                        console.log(String(d));
-
-
-                    },
-
-
-                })
-            });
-
-            $("#page2").on("click", function(event){
-                if($("#kr").hasClass("DESC"))  //1
-                {
-                    var sortstt = "SHORTNAME"
-                    var directt =  "DESC"
-
-                }
-                else
-                {
-                    if($("#kr").hasClass("ASC")) //1
-                    {
-                        var sortstt = "SHORTNAME"
-                        var directt =  "ASC"
-                    }
-                    else
-                    {
-                        if($("#cps").hasClass("DESC")) //2
-                        {
-                            var sortstt = "LASTOFFER"
-                            var directt =  "DESC"
-                        }
-                        else
-                        {
-                            if($("#cps").hasClass("ASC")) //2
-                            {
-                                var sortstt = "LASTOFFER"
-                                var directt =  "ASC"
-                            }
-                            else
-                            {
-                                if($("#isc").hasClass("DESC")) //3
-                                {
-                                    var sortstt = "LASTTOPREVPRICE"
-                                    var directt =  "DESC"
-                                }
-                                else
-                                {
-                                    if($("#isc").hasClass("ASC")) //3
-                                    {
-                                        var sortstt = "LASTTOPREVPRICE"
-                                        var directt =  "ASC"
-                                    }
-                                    else
-                                    {
-                                        if($("#obs").hasClass("DESC")) //4
-                                        {
-                                            var sortstt = "VOLTODAY"
-                                            var directt =  "DESC"
-                                        }
-                                        else
-                                        {
-                                            if($("#obs").hasClass("ASC")) //4
-                                            {
-                                                var sortstt = "VOLTODAY"
-                                                var directt =  "ASC"
-                                            }
-                                            else
-                                            {
-                                                if($("#time").hasClass("DESC")) //5
-                                                {
-                                                    var sortstt = "SYSTIME"
-                                                    var directt =  "DESC"
-                                                }
-                                                else
-                                                {
-                                                    if($("#time").hasClass("ASC")) //5
-                                                    {
-                                                        var sortstt = "SYSTIME"
-                                                        var directt =  "ASC"
-                                                    }
-                                                    else
-                                                    {
-                                                        var sortstt = "1"
-                                                        var directt =  "1"
-                                                    }
-                                                }
-                                            }
-                                        }
-                                    }
-                                }
-                            }
-                        }
-                    }
-                }
-
-                $.ajax({
-                    url: "/",
-                    type : "POST",
-                    data:  {sortst:sortstt , direct:directt},
-
-
-                    success: function(data) {
-
-                        for (let i = 0; i < 10; i++)
-                        { // выведет 0, затем 1, затем 2
-                            document.getElementById("tables_body").deleteRow(0);
-
-                        }
-                        for (let i = 19; i > 9; i--)
-                        {
-                            var table = document.getElementById("tables_body");
-                            var row = table.insertRow(0);
-                            var cell1 = row.insertCell(0);
-                            var cell2 = row.insertCell(1);
-                            var cell3 = row.insertCell(2);
-                            var cell4 = row.insertCell(3);
-                            var cell5 = row.insertCell(4);
-                            cell1.innerHTML = data[i].SHORTNAME;
-                            cell2.innerHTML = data[i].LASTOFFER;
-                            cell3.innerHTML = data[i].LASTTOPREVPRICE;
-                            cell4.innerHTML = data[i].VOLTODAY;
-                            cell5.innerHTML = String(data[i].SYSTIME);
-
-
-
-                        }
-                        var d = new Date(data[0].SYSTIME);
-
-                        console.log(String(d));
-
-
-                    },
-
-
-                })
-            });
-
-            $("#page3").on("click", function(event){
-                if($("#kr").hasClass("DESC"))  //1
-                {
-                    var sortstt = "SHORTNAME"
-                    var directt =  "DESC"
-
-                }
-                else
-                {
-                    if($("#kr").hasClass("ASC")) //1
-                    {
-                        var sortstt = "SHORTNAME"
-                        var directt =  "ASC"
-                    }
-                    else
-                    {
-                        if($("#cps").hasClass("DESC")) //2
-                        {
-                            var sortstt = "LASTOFFER"
-                            var directt =  "DESC"
-                        }
-                        else
-                        {
-                            if($("#cps").hasClass("ASC")) //2
-                            {
-                                var sortstt = "LASTOFFER"
-                                var directt =  "ASC"
-                            }
-                            else
-                            {
-                                if($("#isc").hasClass("DESC")) //3
-                                {
-                                    var sortstt = "LASTTOPREVPRICE"
-                                    var directt =  "DESC"
-                                }
-                                else
-                                {
-                                    if($("#isc").hasClass("ASC")) //3
-                                    {
-                                        var sortstt = "LASTTOPREVPRICE"
-                                        var directt =  "ASC"
-                                    }
-                                    else
-                                    {
-                                        if($("#obs").hasClass("DESC")) //4
-                                        {
-                                            var sortstt = "VOLTODAY"
-                                            var directt =  "DESC"
-                                        }
-                                        else
-                                        {
-                                            if($("#obs").hasClass("ASC")) //4
-                                            {
-                                                var sortstt = "VOLTODAY"
-                                                var directt =  "ASC"
-                                            }
-                                            else
-                                            {
-                                                if($("#time").hasClass("DESC")) //5
-                                                {
-                                                    var sortstt = "SYSTIME"
-                                                    var directt =  "DESC"
-                                                }
-                                                else
-                                                {
-                                                    if($("#time").hasClass("ASC")) //5
-                                                    {
-                                                        var sortstt = "SYSTIME"
-                                                        var directt =  "ASC"
-                                                    }
-                                                    else
-                                                    {
-                                                        var sortstt = "1"
-                                                        var directt =  "1"
-                                                    }
-                                                }
-                                            }
-                                        }
-                                    }
-                                }
-                            }
-                        }
-                    }
-                }
-
-                $.ajax({
-                    url: "/",
-                    type : "POST",
-                    data:  {sortst:sortstt , direct:directt},
-
-
-                    success: function(data) {
-
-                        for (let i = 0; i < 10; i++)
-                        { // выведет 0, затем 1, затем 2
-                            document.getElementById("tables_body").deleteRow(0);
-
-                        }
-                        for (let i = 29; i > 19; i--)
-                        {
-                            var table = document.getElementById("tables_body");
-                            var row = table.insertRow(0);
-                            var cell1 = row.insertCell(0);
-                            var cell2 = row.insertCell(1);
-                            var cell3 = row.insertCell(2);
-                            var cell4 = row.insertCell(3);
-                            var cell5 = row.insertCell(4);
-                            cell1.innerHTML = data[i].SHORTNAME;
-                            cell2.innerHTML = data[i].LASTOFFER;
-                            cell3.innerHTML = data[i].LASTTOPREVPRICE;
-                            cell4.innerHTML = data[i].VOLTODAY;
-                            cell5.innerHTML = String(data[i].SYSTIME);
-
-
-
-                        }
-                        var d = new Date(data[0].SYSTIME);
-
-                        console.log(String(d));
+                        console.log(String(countt));
 
 
                     },
@@ -824,7 +575,7 @@
         content: '\21D1';
     }
 </style>
-
+{{ count }}
 {#     <th class=strelka">Краткое наименование ↓↑</th>
 #}
 
@@ -840,9 +591,12 @@
     {% endfor %}
         </tbody>
     </table>
+<p></p>
 
-<p><button id="page1">1</button> <button id="page2">2</button><button id="page3">3</button>
+{% for count in 1..count %}
 
+<button id={{ count }} class="page">{{ count }}</button>
+    {% endfor %}
 
 {% endblock %}
 
