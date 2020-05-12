@@ -46,36 +46,7 @@
 
                     success: function(data) {
 
-
-
-
-                        for (let i = 0; i < 10; i++)
-                        { // выведет 0, затем 1, затем 2
-                            document.getElementById("tables_body").deleteRow(0);
-
-                        }
-                        for (let i = 9; i > -1; i--)
-                        {
-                            var table = document.getElementById("tables_body");
-                            var row = table.insertRow(0);
-                            var cell1 = row.insertCell(0);
-                            var cell2 = row.insertCell(1);
-                            var cell3 = row.insertCell(2);
-                            var cell4 = row.insertCell(3);
-                            var cell5 = row.insertCell(4);
-                            cell1.innerHTML = data[i].SHORTNAME;
-                            cell2.innerHTML = data[i].LASTOFFER;
-                            cell3.innerHTML = data[i].LASTTOPREVPRICE;
-                            cell4.innerHTML = data[i].VOLTODAY;
-                            cell5.innerHTML = String(data[i].SYSTIME);
-
-
-
-                        }
-                     //   var d = data    ;
-                  //     console.log(d);
-
-
+                        $("#tables_body").html(data);
                     },
 
 
@@ -123,34 +94,8 @@
 
 
                     success: function(data) {
-                        for (let i = 0; i < 10; i++)
-                        { // выведет 0, затем 1, затем 2
-                            document.getElementById("tables_body").deleteRow(0);
 
-                        }
-                        for (let i = 9; i > -1; i--)
-                        {
-                            var table = document.getElementById("tables_body");
-                            var row = table.insertRow(0);
-                            var cell1 = row.insertCell(0);
-                            var cell2 = row.insertCell(1);
-                            var cell3 = row.insertCell(2);
-                            var cell4 = row.insertCell(3);
-                            var cell5 = row.insertCell(4);
-                            cell1.innerHTML = data[i].SHORTNAME;
-                            cell2.innerHTML = data[i].LASTOFFER;
-                            cell3.innerHTML = data[i].LASTTOPREVPRICE;
-                            cell4.innerHTML = data[i].VOLTODAY;
-                            cell5.innerHTML = String(data[i].SYSTIME);
-
-
-
-                        }
-                        //   var d = new Date(data[0].SYSTIME);
-
-                        //  console.log(String(d));
-
-
+                        $("#tables_body").html(data);
                     },
 
 
@@ -199,34 +144,7 @@
 
 
                     success: function(data) {
-                        for (let i = 0; i < 10; i++)
-                        { // выведет 0, затем 1, затем 2
-                            document.getElementById("tables_body").deleteRow(0);
-
-                        }
-                        for (let i = 9; i > -1; i--)
-                        {
-                            var table = document.getElementById("tables_body");
-                            var row = table.insertRow(0);
-                            var cell1 = row.insertCell(0);
-                            var cell2 = row.insertCell(1);
-                            var cell3 = row.insertCell(2);
-                            var cell4 = row.insertCell(3);
-                            var cell5 = row.insertCell(4);
-                            cell1.innerHTML = data[i].SHORTNAME;
-                            cell2.innerHTML = data[i].LASTOFFER;
-                            cell3.innerHTML = data[i].LASTTOPREVPRICE;
-                            cell4.innerHTML = data[i].VOLTODAY;
-                            cell5.innerHTML = String(data[i].SYSTIME);
-
-
-
-                        }
-                        //   var d = new Date(data[0].SYSTIME);
-
-                        //  console.log(String(d));
-
-
+                        $("#tables_body").html(data);
                     },
 
 
@@ -275,34 +193,8 @@
 
 
                     success: function(data) {
-                        for (let i = 0; i < 10; i++)
-                        { // выведет 0, затем 1, затем 2
-                            document.getElementById("tables_body").deleteRow(0);
 
-                        }
-                        for (let i = 9; i > -1; i--)
-                        {
-                            var table = document.getElementById("tables_body");
-                            var row = table.insertRow(0);
-                            var cell1 = row.insertCell(0);
-                            var cell2 = row.insertCell(1);
-                            var cell3 = row.insertCell(2);
-                            var cell4 = row.insertCell(3);
-                            var cell5 = row.insertCell(4);
-                            cell1.innerHTML = data[i].SHORTNAME;
-                            cell2.innerHTML = data[i].LASTOFFER;
-                            cell3.innerHTML = data[i].LASTTOPREVPRICE;
-                            cell4.innerHTML = data[i].VOLTODAY;
-                            cell5.innerHTML = String(data[i].SYSTIME);
-
-
-
-                        }
-                        //   var d = new Date(data[0].SYSTIME);
-
-                        //  console.log(String(d));
-
-
+                        $("#tables_body").html(data);
                     },
 
 
@@ -351,34 +243,8 @@
 
 
                     success: function(data) {
-                        for (let i = 0; i < 10; i++)
-                        { // выведет 0, затем 1, затем 2
-                            document.getElementById("tables_body").deleteRow(0);
 
-                        }
-                        for (let i = 9; i > -1; i--)
-                        {
-                            var table = document.getElementById("tables_body");
-                            var row = table.insertRow(0);
-                            var cell1 = row.insertCell(0);
-                            var cell2 = row.insertCell(1);
-                            var cell3 = row.insertCell(2);
-                            var cell4 = row.insertCell(3);
-                            var cell5 = row.insertCell(4);
-                            cell1.innerHTML = data[i].SHORTNAME;
-                            cell2.innerHTML = data[i].LASTOFFER;
-                            cell3.innerHTML = data[i].LASTTOPREVPRICE;
-                            cell4.innerHTML = data[i].VOLTODAY;
-                            cell5.innerHTML = String(data[i].SYSTIME);
-
-
-
-                        }
-                        //   var d = new Date(data[0].SYSTIME);
-
-                        //  console.log(String(d));
-
-
+                        $("#tables_body").html(data);
                     },
 
 
@@ -407,8 +273,8 @@
 
 
             $(".page").on("click", function(event){
-                var countt = $(this).attr("id");
-                console.log(String(countt));
+
+
                 if($("#kr").hasClass("DESC"))  //1
                 {
                     var sortstt = "SHORTNAME"
@@ -492,41 +358,14 @@
                         }
                     }
                 }
+                var countt = $(this).attr("id");
 
                 $.ajax({
                     url: "/",
                     type : "POST",
-                    data:  {sortst:sortstt , direct:directt, count:countt},
-
-
+                    data:  { sortst:sortstt , direct:directt, count:countt },
                     success: function(data) {
-
-                        for (let i = 0; i < 10; i++)
-                        { // выведет 0, затем 1, затем 2
-                            document.getElementById("tables_body").deleteRow(0);
-
-                        }
-                        for (let i = 9; i > -1; i--)
-                        {
-                            var table = document.getElementById("tables_body");
-                            var row = table.insertRow(0);
-                            var cell1 = row.insertCell(0);
-                            var cell2 = row.insertCell(1);
-                            var cell3 = row.insertCell(2);
-                            var cell4 = row.insertCell(3);
-                            var cell5 = row.insertCell(4);
-                            cell1.innerHTML = data[i].SHORTNAME;
-                            cell2.innerHTML = data[i].LASTOFFER;
-                            cell3.innerHTML = data[i].LASTTOPREVPRICE;
-                            cell4.innerHTML = data[i].VOLTODAY;
-                            cell5.innerHTML = String(data[i].SYSTIME);
-
-
-
-                        }
-                        var d = new Date(data[0].SYSTIME);
-
-                        console.log(String(countt));
+                        $("#tables_body").html(data);
 
 
                     },
@@ -534,21 +373,6 @@
 
                 })
             });
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
         })
 
@@ -575,14 +399,13 @@
         content: '\21D1';
     }
 </style>
-{{ count }}
 {#     <th class=strelka">Краткое наименование ↓↑</th>
 #}
 
-    <table border="1" id="table" name="table" class="sortable">
+    <table border="1" id="table" name="tablee" class="sortable">
         <thead><tr><th id="kr" class="">Краткое наименование</th><th id="cps" class="">Цена последней сделки</th><th id="isc" class="">Изменение цены</th><th id="obs" class="">Объем сделок</th><th id="time" class="">Время последнего обновления</th></tr></thead>
         <tbody id="tables_body">
-         {% for traid in traids| slice( i ,   j ) %}
+         {% for traid in traids %}
          <tr><td>{{ traid.SHORTNAME }}</td>   <td>{{ traid.LASTOFFER }}</td>  <td>{{ traid.LASTTOPREVPRICE }}</td> <td>{{ traid.VOLTODAY }}</td>   <td>{{ traid.SYSTIME|date('Y-m-d H:i:s') }}</td>   </tr>
 
 

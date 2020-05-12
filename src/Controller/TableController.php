@@ -21,29 +21,18 @@ class TableController extends AbstractController
      */
     public function indexAction(Request $request)
     {
-        $i = 0;
-        $j = 10;
+
         $em = $this->getDoctrine()
             ->getManager();
         $qb = $this->getDoctrine()->getManager();
 
-$count=$em->getRepository(CourseOfTrading::class)
-    ->countstr();
-
-      $count=$count / 10;
-        $count=ceil($count) ;
-
-
         if ($request->isXmlHttpRequest()) {
 
-
-                $count=1;
                 $why = $request->request->get('sortst');
                 $direct = $request->request->get('direct');
                 $count=$request->request->get('count');
 
-                $traids =
-                    $em->getRepository(CourseOfTrading::class)
+                $traids = $em->getRepository(CourseOfTrading::class)
                         ->kryb($why, $direct, $count);
 
 //getSYSTIME
@@ -51,13 +40,21 @@ $count=$em->getRepository(CourseOfTrading::class)
                     $Data = $traids[$i]->getSYSTIME()->format('Y-m-d H:i:s');
                     $traids[$i]->setSYSTIME($Data);
                 }
-                return new JsonResponse($traids);
+
+            $content=$this->renderView('table/table.html.twig', [
+                'traids' => $traids]);
+                return new Response($content);
 
         } else {
+            $count=$em->getRepository(CourseOfTrading::class)
+                ->countstr();
+
+            $count=$count / 10;
+            $count=ceil($count) ;
             $traids = $em->getRepository(CourseOfTrading::class)
                 ->getLatestBlogs();
         return $this->render('table/index.html.twig', [
-            'traids' => $traids, 'i' => $i, 'j' => $j,'count'=>$count
+            'traids' => $traids,'count'=>$count
         ]);
 
         }
@@ -66,14 +63,5 @@ $count=$em->getRepository(CourseOfTrading::class)
 
     }
 
-    /**
-* @Route("/ajax", name="ajax")
-*/
-    public function ajaxAction(Request $request)
-    {   $param1= $request->request->get('n');
-        $i=20;
 
-
-        return new Response($i);
-    }
 }

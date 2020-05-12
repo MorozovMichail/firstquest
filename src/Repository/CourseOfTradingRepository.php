@@ -61,8 +61,8 @@ class CourseOfTradingRepository extends ServiceEntityRepository
             $qb = $this->createQueryBuilder('b')
                 ->select('b')
                 ->addOrderBy('b.id', 'ASC')
-                ->setFirstResult($count - 10)
-                ->setMaxResults($count);
+                ->setFirstResult($count-10)
+                ->setMaxResults(10);
 
         }
         else {
@@ -70,8 +70,8 @@ class CourseOfTradingRepository extends ServiceEntityRepository
             $qb = $this->createQueryBuilder('b')
                 ->select('b')
                 ->addOrderBy('b.' . $why, $direct)
-                ->setFirstResult($count - 10)
-                ->setMaxResults($count);
+                ->setFirstResult($count-10)
+                ->setMaxResults(10);
         }
 
 
