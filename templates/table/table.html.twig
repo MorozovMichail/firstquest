@@ -1,8 +1,5 @@
-
-
-
          {% for traid in traids %}
-         <tr><td>{{ traid.SHORTNAME }}</td>   <td>{{ traid.LASTOFFER }}</td>  <td>{{ traid.LASTTOPREVPRICE }}</td> <td>{{ traid.VOLTODAY }}</td>
+         <tr><td>{{ traid.SHORTNAME }}</td>   <td>{{ traid.LASTOFFER }} руб.</td>  <td>{{ traid.LASTTOPREVPRICE }} руб.</td> <td>{{ traid.VOLTODAY }}</td>
              <td>{{ traid.SYSTIME|date('Y-m-d H:i:s') }}</td>   </tr>
     {% endfor %}
 

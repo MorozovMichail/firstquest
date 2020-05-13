@@ -5,386 +5,49 @@
             src = "https://code.jquery.com/jquery-2.2.4.min.js"></script>
 
     <script language = "javascript">
+
         $(document).ready(function(){
-     //       id="kr" id="cps" id="isc"  id="obs" id="time"
             var countt = 1;
-            $("#kr").on("click", function(event){
-                $("#cps").removeClass("ASC")
-                $("#cps").removeClass("DESC")
-                $("#isc").removeClass("ASC")
-                $("#isc").removeClass("DESC")
-                $("#obs").removeClass("ASC")
-                $("#obs").removeClass("DESC")
-                $("#time").removeClass("ASC")
-                $("#time").removeClass("DESC")
-                if($("#kr").hasClass("")) {
+            var directt = 1;
+            var sortstt = 1;
+          function ajax(sort,directt,countt) {
+              $.ajax({
+                  url: "/",
+                  type : "POST",
+                  data: {sortst: sort, direct:directt, count:countt},
+                  success: function(data) {
 
-                    $("#kr").removeClass("ASC")
-                    $("#kr").removeClass("DESC")
-                    $("#kr").toggleClass("DESC")
+                      $("#tables_body").html(data);
+                  },
+              })
+        }
+            $(".thed").on("click", function(event){
+                countt = 1;
+                if($(this).hasClass("DESC"))
+                {
+                    $(".DESC").removeClass("DESC");
+                    $(this).toggleClass("ASC");
+                    directt = "ASC";
                 }
                 else {
-                    if ($("#kr").hasClass("DESC")) {
-
-                        $("#kr").removeClass("ASC")
-                        $("#kr").removeClass("DESC")
-                        $("#kr").toggleClass("ASC")
-                    }
-                    else {
-                        $("#kr").removeClass("ASC")
-                        $("#kr").removeClass("DESC")
-                            $("#kr").toggleClass("DESC")
-                        }
-
+                    $(".ASC").removeClass("ASC");
+                    $(".DESC").removeClass("DESC");
+                    $(this).toggleClass("DESC");
+                    directt = "DESC";
                 }
-
-                $.ajax({
-                    url: "/",
-                    type : "POST",
-                    data: {sortst:"SHORTNAME" , direct:$("#kr").attr('class'), count:countt},
-
-
-                    success: function(data) {
-
-                        $("#tables_body").html(data);
-                    },
-
-
-                })
-
-
-
-
+                sortstt=$(this).attr('id');
+                ajax(sortstt,directt,countt)
             });
-            //       id="kr" id="cps" id="isc"  id="obs" id="time"
-            $("#cps").on("click", function(event){
-                $("#kr").removeClass("ASC")
-                $("#kr").removeClass("DESC")
-                $("#isc").removeClass("ASC")
-                $("#isc").removeClass("DESC")
-                $("#obs").removeClass("ASC")
-                $("#obs").removeClass("DESC")
-                $("#time").removeClass("ASC")
-                $("#time").removeClass("DESC")
-                if($("#cps").hasClass("")) {
-
-                    $("#cps").removeClass("ASC")
-                    $("#cps").removeClass("DESC")
-                    $("#cps").toggleClass("DESC")
-                }
-                else {
-                    if ($("#cps").hasClass("DESC")) {
-
-                        $("#cps").removeClass("ASC")
-                        $("#cps").removeClass("DESC")
-                        $("#cps").toggleClass("ASC")
-                    }
-                    else {
-                        $("#cps").removeClass("ASC")
-                        $("#cps").removeClass("DESC")
-                        $("#cps").toggleClass("DESC")
-                    }
-
-                }
-
-                $.ajax({
-                    url: "/",
-                    type : "POST",
-                    data: {sortst:"LASTOFFER" , direct:$("#cps").attr('class'), count:countt},
-
-
-                    success: function(data) {
-
-                        $("#tables_body").html(data);
-                    },
-
-
-                })
-
-
-
-
-            });
-
-            //       id="kr" id="cps" id="isc"  id="obs" id="time"
-            $("#isc").on("click", function(event){
-                $("#cps").removeClass("ASC")
-                $("#cps").removeClass("DESC")
-                $("#kr").removeClass("ASC")
-                $("#kr").removeClass("DESC")
-                $("#obs").removeClass("ASC")
-                $("#obs").removeClass("DESC")
-                $("#time").removeClass("ASC")
-                $("#time").removeClass("DESC")
-                if($("#isc").hasClass("")) {
-
-                    $("#isc").removeClass("ASC")
-                    $("#isc").removeClass("DESC")
-                    $("#isc").toggleClass("DESC")
-                }
-                else {
-                    if ($("#isc").hasClass("DESC")) {
-
-                        $("#isc").removeClass("ASC")
-                        $("#isc").removeClass("DESC")
-                        $("#isc").toggleClass("ASC")
-                    }
-                    else {
-                        $("#isc").removeClass("ASC")
-                        $("#isc").removeClass("DESC")
-                        $("#isc").toggleClass("DESC")
-                    }
-
-                }
-
-                $.ajax({
-                    url: "/",
-                    type : "POST",
-                    data: {sortst:"LASTTOPREVPRICE" , direct:$("#isc").attr('class'), count:countt},
-
-
-                    success: function(data) {
-                        $("#tables_body").html(data);
-                    },
-
-
-                })
-
-
-
-
-            });
-
-            //       id="kr" id="cps" id="isc"  id="obs" id="time"
-            $("#obs").on("click", function(event){
-                $("#cps").removeClass("ASC")
-                $("#cps").removeClass("DESC")
-                $("#isc").removeClass("ASC")
-                $("#isc").removeClass("DESC")
-                $("#kr").removeClass("ASC")
-                $("#kr").removeClass("DESC")
-                $("#time").removeClass("ASC")
-                $("#time").removeClass("DESC")
-                if($("#obs").hasClass("")) {
-
-                    $("#obs").removeClass("ASC")
-                    $("#obs").removeClass("DESC")
-                    $("#obs").toggleClass("DESC")
-                }
-                else {
-                    if ($("#obs").hasClass("DESC")) {
-
-                        $("#obs").removeClass("ASC")
-                        $("#obs").removeClass("DESC")
-                        $("#obs").toggleClass("ASC")
-                    }
-                    else {
-                        $("#obs").removeClass("ASC")
-                        $("#obs").removeClass("DESC")
-                        $("#obs").toggleClass("DESC")
-                    }
-
-                }
-
-                $.ajax({
-                    url: "/",
-                    type : "POST",
-                    data: {sortst:"VOLTODAY" , direct:$("#obs").attr('class'), count:countt},
-
-
-                    success: function(data) {
-
-                        $("#tables_body").html(data);
-                    },
-
-
-                })
-
-
-
-
-            });
-
-            //       id="kr" id="cps" id="isc"  id="obs" id="time"
-            $("#time").on("click", function(event){
-                $("#cps").removeClass("ASC")
-                $("#cps").removeClass("DESC")
-                $("#isc").removeClass("ASC")
-                $("#isc").removeClass("DESC")
-                $("#obs").removeClass("ASC")
-                $("#obs").removeClass("DESC")
-                $("#kr").removeClass("ASC")
-                $("#kr").removeClass("DESC")
-                if($("#time").hasClass("")) {
-
-                    $("#time").removeClass("ASC")
-                    $("#time").removeClass("DESC")
-                    $("#time").toggleClass("DESC")
-                }
-                else {
-                    if ($("#time").hasClass("DESC")) {
-
-                        $("#time").removeClass("ASC")
-                        $("#time").removeClass("DESC")
-                        $("#time").toggleClass("ASC")
-                    }
-                    else {
-                        $("#time").removeClass("ASC")
-                        $("#time").removeClass("DESC")
-                        $("#time").toggleClass("DESC")
-                    }
-
-                }
-
-                $.ajax({
-                    url: "/",
-                    type : "POST",
-                    data: {sortst:"SYSTIME" , direct:$("#time").attr('class'), count:countt},
-
-
-                    success: function(data) {
-
-                        $("#tables_body").html(data);
-                    },
-
-
-                })
-
-
-
-
-            });
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-            // страницы        //       id="kr" id="cps" id="isc"  id="obs" id="time"
-
 
             $(".page").on("click", function(event){
-
-
-                if($("#kr").hasClass("DESC"))  //1
-                {
-                    var sortstt = "SHORTNAME"
-                    var directt =  "DESC"
-
-                }
-                else
-                {
-                    if($("#kr").hasClass("ASC")) //1
-                    {
-                        var sortstt = "SHORTNAME"
-                        var directt =  "ASC"
-                    }
-                    else
-                    {
-                        if($("#cps").hasClass("DESC")) //2
-                        {
-                            var sortstt = "LASTOFFER"
-                            var directt =  "DESC"
-                        }
-                        else
-                        {
-                            if($("#cps").hasClass("ASC")) //2
-                            {
-                                var sortstt = "LASTOFFER"
-                                var directt =  "ASC"
-                            }
-                            else
-                            {
-                                if($("#isc").hasClass("DESC")) //3
-                                {
-                                    var sortstt = "LASTTOPREVPRICE"
-                                    var directt =  "DESC"
-                                }
-                                else
-                                {
-                                    if($("#isc").hasClass("ASC")) //3
-                                    {
-                                        var sortstt = "LASTTOPREVPRICE"
-                                        var directt =  "ASC"
-                                    }
-                                    else
-                                    {
-                                        if($("#obs").hasClass("DESC")) //4
-                                        {
-                                            var sortstt = "VOLTODAY"
-                                            var directt =  "DESC"
-                                        }
-                                        else
-                                        {
-                                            if($("#obs").hasClass("ASC")) //4
-                                            {
-                                                var sortstt = "VOLTODAY"
-                                                var directt =  "ASC"
-                                            }
-                                            else
-                                            {
-                                                if($("#time").hasClass("DESC")) //5
-                                                {
-                                                    var sortstt = "SYSTIME"
-                                                    var directt =  "DESC"
-                                                }
-                                                else
-                                                {
-                                                    if($("#time").hasClass("ASC")) //5
-                                                    {
-                                                        var sortstt = "SYSTIME"
-                                                        var directt =  "ASC"
-                                                    }
-                                                    else
-                                                    {
-                                                        var sortstt = "1"
-                                                        var directt =  "1"
-                                                    }
-                                                }
-                                            }
-                                        }
-                                    }
-                                }
-                            }
-                        }
-                    }
-                }
-                var countt = $(this).attr("id");
-
-                $.ajax({
-                    url: "/",
-                    type : "POST",
-                    data:  { sortst:sortstt , direct:directt, count:countt },
-                    success: function(data) {
-                        $("#tables_body").html(data);
-
-
-                    },
-
-
-                })
+                 countt = $(this).attr("id");
+                ajax(sortstt,directt,countt)
             });
-
         })
-
 
     </script>
 
 {% endblock %}
-
-
-
-
-
 
 {% block title %}Hello TableController!{% endblock %}
 
@@ -403,21 +66,19 @@
 #}
 
     <table border="1" id="table" name="tablee" class="sortable">
-        <thead><tr><th id="kr" class="">Краткое наименование</th><th id="cps" class="">Цена последней сделки</th><th id="isc" class="">Изменение цены</th><th id="obs" class="">Объем сделок</th><th id="time" class="">Время последнего обновления</th></tr></thead>
+        <thead><tr><th id="SHORTNAME" class="thed">Краткое наименование</th><th id="LASTOFFER" class="thed">Цена последней сделки</th>
+            <th id="LASTTOPREVPRICE" class="thed">Изменение цены</th><th id="VOLTODAY" class="thed">Объем сделок</th>
+            <th id="SYSTIME" class="thed">Время последнего обновления</th></tr></thead>
         <tbody id="tables_body">
          {% for traid in traids %}
-         <tr><td>{{ traid.SHORTNAME }}</td>   <td>{{ traid.LASTOFFER }}</td>  <td>{{ traid.LASTTOPREVPRICE }}</td> <td>{{ traid.VOLTODAY }}</td>   <td>{{ traid.SYSTIME|date('Y-m-d H:i:s') }}</td>   </tr>
-
-
-    {% else %}
-    <p>There are no blog entries for symblog</p>
+         <tr><td>{{ traid.SHORTNAME }}</td>   <td>{{ traid.LASTOFFER }} руб.</td>  <td>{{ traid.LASTTOPREVPRICE }} руб.</td> <td>{{ traid.VOLTODAY }}</td>
+             <td>{{ traid.SYSTIME|date('Y-m-d H:i:s') }}</td>   </tr>
     {% endfor %}
         </tbody>
     </table>
 <p></p>
 
 {% for count in 1..count %}
-
 <button id={{ count }} class="page">{{ count }}</button>
     {% endfor %}
 

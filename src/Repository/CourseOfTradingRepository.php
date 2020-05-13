@@ -23,7 +23,7 @@ class CourseOfTradingRepository extends ServiceEntityRepository
     {
         $qb = $this->createQueryBuilder('b')
             ->select('b')
-            ->addOrderBy('b.id', 'ASC')
+            ->addOrderBy('b.VOLTODAY', 'DESC')
             ->setMaxResults( 10 );
 
 
@@ -32,24 +32,18 @@ class CourseOfTradingRepository extends ServiceEntityRepository
             ->getResult();
     }
 //подщет какие записи выводить
-//->setFirstResult( $offset )
-//->setMaxResults( $limit );
+//->setFirstResult( $offset )   с какого начинать
+//->setMaxResults( $limit );  сколько
 
 
     public function countstr()
     {
-//        $entityManager = $this->getEntityManager();
-//        $query = $entityManager->createQuery(
-//            'SELECT COUNT(*) LIMIT 1
-//            '
-//        );
+
         $query = $this->createQueryBuilder('b')
             ->select('count(b.id)')
             ->getQuery()
             ->getSingleScalarResult();
 
-
-        ;
 
         return $query;
     }
@@ -60,7 +54,7 @@ class CourseOfTradingRepository extends ServiceEntityRepository
         {
             $qb = $this->createQueryBuilder('b')
                 ->select('b')
-                ->addOrderBy('b.id', 'ASC')
+                ->addOrderBy('b.VOLTODAY', 'DESC')
                 ->setFirstResult($count-10)
                 ->setMaxResults(10);
 
